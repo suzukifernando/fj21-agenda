@@ -13,9 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/hora")
 public class Hora extends HttpServlet{
+	private int contador = 0;
+	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		contador ++;
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 		Date d = new Date();
 		String html = "<html>";
@@ -26,6 +29,7 @@ public class Hora extends HttpServlet{
 		html += "<h1>Hora no Japão</h1>";
 		String horaFormatada = sdf.format(d);
 		html += "<p>"+horaFormatada+"</p>";
+		html += "o contador é: " + contador;
 		html += "</body>";
 		html += "</html>";
 		PrintWriter pw = response.getWriter();
